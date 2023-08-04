@@ -154,6 +154,8 @@ return {
         "tsx",
         "typescript",
         "vim",
+        "rust",
+        "cpp",
         "yaml",
       },
     },
