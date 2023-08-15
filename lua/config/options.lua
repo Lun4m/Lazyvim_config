@@ -3,4 +3,4 @@
 -- Add any additional options here
 vim.opt.autochdir = true
 vim.opt.cursorlineopt = "number"
-vim.o.backgroun = "dark"
+vim.o.background = "dark"

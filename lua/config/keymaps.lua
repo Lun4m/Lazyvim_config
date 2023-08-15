@@ -18,6 +18,7 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- Go to previous or next hunk
 map(
   "n",
   "<leader>gj",
@@ -30,7 +31,9 @@ map(
   "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",
   { desc = "Prev Hunk" }
 )
--- map("n", "<leader>j",  { name = "NvimIpy" })
+
+-- QTconsole
+-- map("n", "<leader>j", { name = "Nvim-IPy" })
 map("n", "<leader>jo", "<cmd>IPython<cr>", { desc = "Run IPython inside nvim" })
 map(
   "n",
@@ -38,14 +41,17 @@ map(
   "<cmd>call jobstart('jupyter qtconsole --JupyterWidget.include_other_output=True --JupyterQtConsoleApp.hide_menubar=True') | :wincmd p<cr>",
   { desc = "Run python QTconsole" }
 )
+
 map("n", "<leader>jk", "<cmd>IPython --existing --no-window<cr>", { desc = "Connect to existing kernel" })
 map("n", "<leader>jc", "<Plug>(IPy-RunCell)<cr>", { desc = "Run current cell" })
 map("n", "<leader>ja", "<Plug>(IPy-RunAll)<cr>", { desc = "Run all cells" })
 
+-- Easily move visual selection lines up and down
 map("v", "J", ":move '>+1<CR>gv-gv", { desc = "Move lines down in visual mode" })
 map("v", "K", ":move '<-2<CR>gv-gv", { desc = "Move lines up in visual mode" })
 map("v", "p", '"_dP"', { desc = "Keep same clipboard when pasting" })
 
+-- Set key map for lazyterm
 local lazyterm = function()
   Util.float_term(nil, { cwd = Util.get_root(), border = "rounded" })
 end

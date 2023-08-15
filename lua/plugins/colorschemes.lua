@@ -15,7 +15,6 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     opts = {
-      -- contrast = "soft",
       undercurl = true,
       underline = true,
       bold = false,
