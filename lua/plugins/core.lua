@@ -101,6 +101,18 @@ return {
       -- disable the keymap to grep files
       { "<leader>/", false },
     },
+    opts = {
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-n>"] = require("telescope.actions").cycle_history_next,
+            ["<C-j>"] = require("telescope.actions").move_selection_next,
+            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+            ["<C-p>"] = require("telescope.actions").cycle_history_prev,
+          },
+        },
+      },
+    },
   },
   {
     "folke/which-key.nvim",
