@@ -5,11 +5,11 @@ return {
       return {}
     end,
   },
-  -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-omni",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -22,16 +22,10 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
-      -- opts.window = {
-      --   completion = {
-      --     border = "rounded",
-      --     winhighlight = "Normal:Pmenu",
-      --   },
-      --   documentation = {
-      --     winhighlight = "Normal:Pmenu",
-      --   },
-      -- }
+      -- Update cmp sources
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "omni" } }))
 
+      -- Update mapping
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping(function(fallback)
           if luasnip.expand_or_locally_jumpable() then
@@ -157,5 +151,18 @@ return {
         "fortls",
       },
     },
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000",
+    },
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources, { nls.builtins.formatting.black })
+    end,
   },
 }
