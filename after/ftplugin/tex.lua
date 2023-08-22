@@ -18,5 +18,4 @@ require("cmp").setup.buffer({
   },
 })
 
-vim.o.conceallevel = 2
 vim.o.wrap = true
