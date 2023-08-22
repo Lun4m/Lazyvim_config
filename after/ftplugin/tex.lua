@@ -17,3 +17,6 @@ require("cmp").setup.buffer({
     { name = "path" },
   },
 })
+
+vim.o.conceallevel = 2
+vim.o.wrap = true
