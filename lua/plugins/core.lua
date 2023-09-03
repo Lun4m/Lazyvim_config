@@ -150,6 +150,7 @@ return {
         "clangd",
         "fortls",
         "texlab",
+        "latexindent",
       },
     },
   },
@@ -163,7 +164,13 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      opts.sources = vim.list_extend(opts.sources, { nls.builtins.formatting.black })
+      opts.sources = vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.ruff,
+        nls.builtins.diagnostics.shellcheck,
+        nls.builtins.formatting.black,
+        nls.builtins.formatting.shfmt,
+        nls.builtins.formatting.latexindent,
+      })
     end,
   },
   {
