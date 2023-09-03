@@ -4,3 +4,5 @@
 vim.opt.autochdir = true
 vim.opt.cursorlineopt = "number"
 vim.o.background = "dark"
+vim.opt.pumblend = 0
+-- vim.opt.winblend = 0
