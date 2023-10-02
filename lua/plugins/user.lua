@@ -25,7 +25,16 @@ return {
     end,
     init = function()
       vim.g.vimtex_compiler_method = "latexmk"
-      -- vim.g.vimtex_view_method = "general"
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          "-shell-escape",
+          "-verbose",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+        },
+      }
+      vim.g.vimtex_view_method = "general"
       vim.g.vimtex_view_method = "zathura_simple"
       vim.g.vimtex_quickfix_mode = 0
       vim.g.vimtex_view_forward_search_on_start = 0
@@ -88,8 +97,8 @@ return {
         "!lazy", -- Commit hashes get highlighted sometimes.
       },
       user_default_options = {
-        RGB = true, -- #RGB hex codes.
-        RRGGBB = true, -- #RRGGBB hex codes.
+        RGB = true,      -- #RGB hex codes.
+        RRGGBB = true,   -- #RRGGBB hex codes.
         RRGGBBAA = true, -- #RRGGBBAA hex codes.
         AARRGGBB = true, -- 0xAARRGGBB hex codes.
 
@@ -99,7 +108,7 @@ return {
 
         rgb_fn = true, -- CSS rgb() and rgba() functions.
         hsl_fn = true, -- CSS hsl() and hsla() functions.
-        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB.
+        css = true,    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB.
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn.
         tailwind = true,
 

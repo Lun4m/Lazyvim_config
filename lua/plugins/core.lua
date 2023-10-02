@@ -24,7 +24,8 @@ return {
 
       -- Update cmp sources
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "omni" } }))
-
+      -- opts.preselect = cmp.PreselectMode.None
+      -- opts.completion.completeopt = "menu,menuone,noinsert,noselect"
       -- Update mapping
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping(function(fallback)
@@ -64,6 +65,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
       })
     end,
   },
@@ -150,7 +152,7 @@ return {
         "clangd",
         "fortls",
         "texlab",
-        "latexindent",
+        -- "latexindent",
       },
     },
   },
@@ -161,7 +163,7 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources, {
@@ -169,7 +171,7 @@ return {
         nls.builtins.diagnostics.shellcheck,
         nls.builtins.formatting.black,
         nls.builtins.formatting.shfmt,
-        nls.builtins.formatting.latexindent,
+        -- nls.builtins.formatting.latexindent,
       })
     end,
   },
@@ -184,6 +186,28 @@ return {
         changedelete = { text = "▌" },
         untracked = { text = "▌" },
       },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        clangd = function(_, opts)
+          opts.capabilities.offsetEncoding = { "utf-16" }
+        end,
+        -- texlab = function(_, opts)
+        --   opts.texlab.latexFormatter = "latexindent"
+        -- end,
+      },
+      -- settings = {
+      --   texlab = {
+      --     latexFormatter = "latexindent",
+      --     latexindent = {
+      --       ["local"] = nil, -- local is a reserved keyword
+      --       modifyLineBreaks = false,
+      --     },
+      --   },
+      -- },
     },
   },
 }
